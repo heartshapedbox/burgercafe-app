@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import font
+import pyglet
 import os
 os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-menu\\')
 

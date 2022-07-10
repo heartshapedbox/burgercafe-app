@@ -81,6 +81,21 @@ class Cafe():
             )
         self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 10, y = 10, width = 25, height = 25)
+    
+    
+    def showBackButton(self):
+        self.button = Button(self.root, text = '<<', command = self.showRecipesPage)
+        self.button.configure(
+            background = self.bgcolor,
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.button.place(x = 10, y = 35, width = 25, height = 25)
         
     
     def showNext(self, i):
@@ -198,6 +213,7 @@ class Cafe():
     def showRecipe(self, i):
         self.showBackground()
         self.showCloseButton()
+        self.showBackButton()
         self.showNext(i)
         self.showPrevious(i)
         self.textwidget = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 260)

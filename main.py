@@ -3,7 +3,7 @@ from tkinter import font
 import os
 os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-menu\\')
 
-class Cafe():
+class App():
     def __init__(self): 
         self.root = Tk()
         self.x = int(self.root.winfo_screenwidth() // 2.3)
@@ -258,4 +258,4 @@ class Cafe():
         self.showMainPage()
         
 if __name__ == '__main__':
-    Cafe()
+    App()

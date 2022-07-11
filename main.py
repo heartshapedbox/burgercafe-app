@@ -1,6 +1,4 @@
 from tkinter import *
-from tkinter import font
-import pyglet
 import os
 os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-menu\\')
 
@@ -114,7 +112,7 @@ class App():
         self.button.place(x = 10, y = 35, width = 25, height = 25)
 
     
-    def showNext(self, i):
+    def showNextButton(self, i):
         if i == 'burger':
             self.button = Button(self.root, text = '>', command = lambda:self.showRecipe('pancake'))
         elif i == "pancake":
@@ -134,7 +132,7 @@ class App():
         self.button.place(x = 315, y = 225, width = 25, height = 25)
         
     
-    def showPrevious(self, i):
+    def showPreviousButton(self, i):
         if i == 'burger':
             self.button = Button(self.root, text = '<', command = lambda:self.showRecipe('cupcake'))
         elif i == "cupcake":
@@ -186,24 +184,34 @@ class App():
         self.textwidget3['text'] = 'These delicious cupcake has a chocolate centre once you get past the cream topping.'
         self.header_fontwidget3.place(x = 0, y = 80, width = 130)
         self.textwidget3.place(x = 25, y = 405, width = 150)
+        
+        self.output1 = Message(self.root, text = '0', background = '#fede00', width = 5)
+        self.output1.place(x = 174, y = 150)
+        self.output2 = Message(self.root, text = '0', background = '#fede00', width = 5)
+        self.output2.place(x = 150, y = 345)
+        self.output3 = Message(self.root, text = '0', background = '#fede00', width = 5)
+        self.output3.place(x = 208, y = 470)
+        
         self.showPrice()
-        self.showBaskets()
+        self.showBasketButton()
+        self.showIncreaseButton()
+        self.showDecreaseButton()
     
     
     def showPrice(self):
         self.pricewidget1 = Label(self.burgerwidget, text = '$2.50', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
         self.pricewidget2 = Label(self.pancakewidget, text = '$6.75', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
         self.pricewidget3 = Label(self.cupcakewidget, text = '$2.15', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
-        self.pricewidget1.place(x = 20, y = 125, width = 50, height = 50)
-        self.pricewidget2.place(x = 265, y = 130, width = 50, height = 50)
-        self.pricewidget3.place(x = 10, y = 115, width = 50, height = 50)
+        self.pricewidget1.place(x = 20, y = 125, width = 50, height = 25)
+        self.pricewidget2.place(x = 277, y = 130, width = 50, height = 25)
+        self.pricewidget3.place(x = 5, y = 115, width = 50, height = 25)
     
     
-    def showBaskets(self):
-        self.button1 = Button(self.burgerwidget, text = '🛒')
-        self.button2 = Button(self.pancakewidget, text = '🛒')
-        self.button3 = Button(self.cupcakewidget, text = '🛒')
-        for i in (self.button1, self.button2, self.button3):
+    def showBasketButton(self):
+        self.basketButton1 = Button(self.burgerwidget, text = '🛒')
+        self.basketButton2 = Button(self.pancakewidget, text = '🛒')
+        self.basketButton3 = Button(self.cupcakewidget, text = '🛒')
+        for i in (self.basketButton1, self.basketButton2, self.basketButton3):
             i.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -214,10 +222,79 @@ class App():
             activeforeground = self.menu_fgcolor
             )
             self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
-        self.button1.place(x = 13, y = 160, width = 25, height = 25)
-        self.button2.place(x = 300, y = 165, width = 25, height = 25)
-        self.button3.place(x = 0, y = 150, width = 25, height = 25)
+        self.basketButton1.place(x = 20, y = 150, width = 25, height = 25)
+        self.basketButton2.place(x = 277, y = 155, width = 25, height = 25)
+        self.basketButton3.place(x = 4, y = 140, width = 25, height = 25)
+        
+        
+    def showIncreaseButton(self):
+        self.increaseButton1 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton1'))
+        self.increaseButton2 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton2'))
+        self.increaseButton3 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton3'))
+        for i in (self.increaseButton1, self.increaseButton2, self.increaseButton3):
+            i.configure(
+            background = '#fede00',
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+            self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.increaseButton1.place(x = 197, y = 149, width = 25, height = 25)
+        self.increaseButton2.place(x = 173, y = 344, width = 25, height = 25)
+        self.increaseButton3.place(x = 231, y = 469, width = 25, height = 25)
     
+    
+    def showDecreaseButton(self):
+        self.decreaseButton1 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton1'))
+        self.decreaseButton2 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton2'))
+        self.decreaseButton3 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton3'))
+        for i in (self.decreaseButton1, self.decreaseButton2, self.decreaseButton3):
+            i.configure(
+            background = '#fede00',
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+            self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.decreaseButton1.place(x = 146, y = 149, width = 25, height = 25)
+        self.decreaseButton2.place(x = 122, y = 344, width = 25, height = 25)
+        self.decreaseButton3.place(x = 180, y = 469, width = 25, height = 25)
+            
+            
+    def increase(self, i, y):
+        self.val = int(i)
+        if y == 'increaseButton1' and int(self.output1['text']) < 9:
+            self.val += int(self.output1['text'])
+            self.output1['text'] = str(self.val)
+        elif y == 'increaseButton2' and int(self.output2['text']) < 9:
+            self.val += int(self.output2['text'])
+            self.output2['text'] = str(self.val)
+        elif y == 'increaseButton3' and int(self.output3['text']) < 9:
+            self.val += int(self.output3['text'])
+            self.output3['text'] = str(self.val)
+            
+            
+    def decrease(self, i, y):
+        self.val = int(i)
+        if y == 'decreaseButton1' and int(self.output1['text']) != 0:
+            x = int(self.output1['text'])
+            x -= self.val
+            self.output1['text'] = str(x)
+        elif y == 'decreaseButton2' and int(self.output2['text']) != 0:
+            x = int(self.output2['text'])
+            x -= self.val
+            self.output2['text'] = str(x)
+        elif y == 'decreaseButton3' and int(self.output3['text']) != 0:
+            x = int(self.output3['text'])
+            x -= self.val
+            self.output3['text'] = str(x)
+        
     
     def showAboutUsPage(self):
         self.showBackground()
@@ -261,8 +338,8 @@ class App():
         self.showBackground()
         self.showCloseButton()
         self.showBackButton()
-        self.showNext(i)
-        self.showPrevious(i)
+        self.showNextButton(i)
+        self.showPreviousButton(i)
         self.textwidget = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 260)
         self.header_fonttwidget = Label(self.root, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 260)
         if i == 'burger':

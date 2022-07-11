@@ -33,6 +33,20 @@ class App():
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
         self.showMenu()
+        
+        self.button = Button(self.root, text = '🛒')
+        self.button.configure(
+            background = self.bgcolor,
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.button.place(x = 30, y = 30, width = 25, height = 25)
+        
     
     
     def showMenu(self):
@@ -97,7 +111,7 @@ class App():
             )
         self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 10, y = 35, width = 25, height = 25)
-        
+
     
     def showNext(self, i):
         if i == 'burger':
@@ -165,14 +179,32 @@ class App():
         self.boldwidget2.place(x = 150, y = 20, width = 180)
         self.textwidget2.place(x = 195, y = 200, width = 150)
         
-        self.boldwidget3 = Label(self.cupcakewidget, text = '', background = '#fede00', font = self.bold, justify = LEFT, wraplength = 150)
+        self.boldwidget3 = Label(self.cupcakewidget, text = '', background = '#fede00', font = self.bold, justify = LEFT, wraplength = 130)
         self.boldwidget3['text'] = 'Chocolate Cupcake'
         self.textwidget3 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 160)
         self.textwidget3['text'] = 'These delicious cupcake has a chocolate centre once you get past the cream topping.'
-        self.boldwidget3.place(x = -20, y = 80, width = 160)
+        self.boldwidget3.place(x = 0, y = 80, width = 130)
         self.textwidget3.place(x = 25, y = 405, width = 150)
         
-    
+        self.button1 = Button(self.burgerwidget, text = '🛒')
+        self.button2 = Button(self.pancakewidget, text = '🛒')
+        self.button3 = Button(self.cupcakewidget, text = '🛒')
+        for i in (self.button1, self.button2, self.button3):
+            i.configure(
+            background = self.bgcolor,
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+            self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.button1.place(x = 20, y = 145, width = 25, height = 25)
+        self.button2.place(x = 300, y = 110, width = 25, height = 25)
+        self.button3.place(x = 0, y = 145, width = 25, height = 25)
+        
+        
     def showAboutUsPage(self):
         self.showBackground()
         self.showCloseButton()

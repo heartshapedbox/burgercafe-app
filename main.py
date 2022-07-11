@@ -37,13 +37,13 @@ class App():
     
     def showMenu(self):
         self.button_aboutus = Button(self.root, text = 'ABOUT US', command = self.showAboutUsPage)
-        self.button_aboutus.place(x = 30, y = 200, width = 85)
+        self.button_aboutus.place(x = 30, y = 200, width = 80)
         self.button_menu = Button(self.root, text = 'MENU', command = self.showMenuPage)
-        self.button_menu.place(x = 30, y = 225, width = 85)
+        self.button_menu.place(x = 30, y = 225, width = 80)
         self.button_recipes = Button(self.root, text = 'RECIPES', command = self.showRecipesPage)
-        self.button_recipes.place(x = 30, y = 250, width = 85)
+        self.button_recipes.place(x = 30, y = 250, width = 80)
         self.button_contacts = Button(self.root, text = 'CONTACTS', command = self.showContactsPage)
-        self.button_contacts.place(x = 30, y = 275, width = 85)
+        self.button_contacts.place(x = 30, y = 275, width = 80)
         
         for i in (self.button_aboutus, self.button_menu, self.button_recipes, self.button_contacts):
             i.configure(

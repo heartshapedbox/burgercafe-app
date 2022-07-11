@@ -16,7 +16,8 @@ class App():
         # self.root.attributes('-alpha', 0.8)
         self.root.iconbitmap('assets\\logo.ico')
         self.font = ('TkMenuFont',10)
-        self.bold = ('TkMenuFont',10, 'bold')
+        self.header_font = ('TkMenuFont',10, 'bold')
+        self.price_font = ('TkMenuFont',12, 'bold')
         self.bgcolor = '#fede00'
         self.fgcolor = '#000000'
         self.menu_fgcolor = '#b29b00'
@@ -165,27 +166,40 @@ class App():
         self.pancakewidget.place(x = -130, y = 160)
         self.cupcakewidget = Label(self.root, image = self.cupcake, background = self.bgcolor)
         self.cupcakewidget.place(x = 200, y = 300)
-        self.boldwidget1 = Label(self.burgerwidget, text = '', background = '#fede00', font = self.bold, justify = LEFT, wraplength = 150)
-        self.boldwidget1['text'] = 'Burger with Vegetables'
+        self.header_fontwidget1 = Label(self.burgerwidget, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 150)
+        self.header_fontwidget1['text'] = 'Burger with Vegetables'
         self.textwidget1 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 140)
         self.textwidget1['text'] = 'Enjoy deliciously simple craft Classic Burger with a juicy beef patty, lettuce, tomato, onions and pickles on a bun.'
-        self.boldwidget1.place(x = 0, y = 50, width = 160)
+        self.header_fontwidget1.place(x = 0, y = 50, width = 160)
         self.textwidget1.place(x = 25, y = 40, width = 140)
         
-        self.boldwidget2 = Label(self.pancakewidget, text = '', background = '#fede00', font = self.bold, justify = LEFT, wraplength = 170)
-        self.boldwidget2['text'] = 'Pancakes with Blueberries'
+        self.header_fontwidget2 = Label(self.pancakewidget, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 170)
+        self.header_fontwidget2['text'] = 'Pancakes with Blueberries'
         self.textwidget2 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 120)
         self.textwidget2['text'] = 'Super thick and fluffy pancakes! Melt in your mouth, golden brown, and bursting with blueberries.'
-        self.boldwidget2.place(x = 150, y = 20, width = 180)
+        self.header_fontwidget2.place(x = 150, y = 20, width = 180)
         self.textwidget2.place(x = 195, y = 200, width = 150)
         
-        self.boldwidget3 = Label(self.cupcakewidget, text = '', background = '#fede00', font = self.bold, justify = LEFT, wraplength = 130)
-        self.boldwidget3['text'] = 'Chocolate Cupcake'
+        self.header_fontwidget3 = Label(self.cupcakewidget, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 130)
+        self.header_fontwidget3['text'] = 'Chocolate Cupcake'
         self.textwidget3 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 160)
         self.textwidget3['text'] = 'These delicious cupcake has a chocolate centre once you get past the cream topping.'
-        self.boldwidget3.place(x = 0, y = 80, width = 130)
+        self.header_fontwidget3.place(x = 0, y = 80, width = 130)
         self.textwidget3.place(x = 25, y = 405, width = 150)
-        
+        self.showPrice()
+        self.showBaskets()
+    
+    
+    def showPrice(self):
+        self.pricewidget1 = Label(self.burgerwidget, text = '$2.50', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
+        self.pricewidget2 = Label(self.pancakewidget, text = '$6.75', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
+        self.pricewidget3 = Label(self.cupcakewidget, text = '$2.15', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
+        self.pricewidget1.place(x = 20, y = 125, width = 50, height = 50)
+        self.pricewidget2.place(x = 265, y = 130, width = 50, height = 50)
+        self.pricewidget3.place(x = 10, y = 115, width = 50, height = 50)
+    
+    
+    def showBaskets(self):
         self.button1 = Button(self.burgerwidget, text = '🛒')
         self.button2 = Button(self.pancakewidget, text = '🛒')
         self.button3 = Button(self.cupcakewidget, text = '🛒')
@@ -200,11 +214,11 @@ class App():
             activeforeground = self.menu_fgcolor
             )
             self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
-        self.button1.place(x = 20, y = 145, width = 25, height = 25)
-        self.button2.place(x = 300, y = 110, width = 25, height = 25)
-        self.button3.place(x = 0, y = 145, width = 25, height = 25)
-        
-        
+        self.button1.place(x = 13, y = 160, width = 25, height = 25)
+        self.button2.place(x = 300, y = 165, width = 25, height = 25)
+        self.button3.place(x = 0, y = 150, width = 25, height = 25)
+    
+    
     def showAboutUsPage(self):
         self.showBackground()
         self.showCloseButton()
@@ -250,17 +264,17 @@ class App():
         self.showNext(i)
         self.showPrevious(i)
         self.textwidget = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 260)
-        self.boldtwidget = Label(self.root, text = '', background = '#fede00', font = self.bold, justify = LEFT, wraplength = 260)
+        self.header_fonttwidget = Label(self.root, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 260)
         if i == 'burger':
-            self.boldtwidget['text'] = 'Burger with Vegetables'
+            self.header_fonttwidget['text'] = 'Burger with Vegetables'
             self.textwidget['text'] = 'Ingredients:\n* 1 small onion, diced,* 500g good-quality beef mince,* 1 egg,* 1 tbsp vegetable oil,* 4 burger buns,* all or any of the following to serve: sliced tomato, beetroot, horseradish sauce, mayonnaise, ketchup, handful iceberg lettuce, rocket, watercress\n\nMethod:\nTip 500g beef mince into a bowl with 1 small diced onion and 1 egg, then mix. Divide the mixture into four. Roll the mixture into balls and squeeze down to flatten into patties. Put on a plate, cover with cling film and leave in the fridge to firm up for at least 30 mins. Heat the barbecue to medium hot. Lightly brush one side of each burger with vegetable oil. Place the burgers, oil-side down, on the barbecue. Cook for 5 mins until the meat is lightly charred. Oil the other side, then turn over using tongs. Slice four burger buns in half. Place, cut-side down, on the barbecue rack and toast for 1 min until they are lightly charred. Place a burger inside each bun.'
         elif i == 'pancake':
-            self.boldtwidget['text'] = 'Pancakes with Blueberries'
+            self.header_fonttwidget['text'] = 'Pancakes with Blueberries'
             self.textwidget['text'] = 'Ingredients:\n* 200g self-raising flour,* 1 tsp baking powder,* 1 egg,* 300ml milk,* knob butter,* 150g pack blueberry,* sunflower oil or a little butter for cooking,* golden or maple syrup\n\nMethod:\nMix together 200g self-raising flour, 1 tsp baking powder and a pinch of salt in a large bowl. Beat 1 egg with 300ml milk, make a well in the centre of the dry ingredients and whisk in the milk to make a thick smooth batter. Beat in a knob of melted butter, and stir in half of the 150g pack of blueberries. Heat a teaspoon of sunflower oil or small knob of butter in a frying pan. Drop a large tablespoonful of the batter per pancake into the pan to make pancakes about 7.5cm across. Cook for about 3 minutes over a medium heat, then turn and cook another 2-3 minutes until golden. Cover with kitchen paper to keep warm while you use up the rest of the batter. Serve with golden or maple syrup and the rest of the blueberries.'
         else:
-            self.boldtwidget['text'] = 'Chocolate Cupcakes'
+            self.header_fonttwidget['text'] = 'Chocolate Cupcakes'
             self.textwidget['text'] = 'Ingredients:\n* 110g softened butter,* 110g golden caster sugar,* 2 large eggs,* ½ tsp vanilla extract,* 110g self-raising flour,* 150g softened butter,* 300g icing sugar,* 1 tsp vanilla extract,* 3 tbsp milk\n\nMethod:\nHeat oven to 180C/160C fan/gas and fill a 12 cupcake tray with cases. Using a whisk beat 110g softened butter and 110g golden caster sugar together until pale and fluffy then whisk in 2 large eggs, one at a time, scraping down the sides of the bowl after each addition. Add ½ tsp vanilla extract, 110g self-raising flour and a pinch of salt, whisk until just combined then spoon the mixture into the cupcake cases. Bake for 15 mins until golden brown and a skewer inserted into the middle of each cake comes out clean. To make the buttercream, whisk 150g softened butter until super soft then add 300g icing sugar, 1 tsp vanilla extract and a pinch of salt. Whisk together until smooth then beat in 3 tbsp milk.'
-        self.boldtwidget.place(x = 45, y = 25, width = 260)
+        self.header_fonttwidget.place(x = 45, y = 25, width = 260)
         self.textwidget.place(x = 45, y = 50, width = 260)
         
     

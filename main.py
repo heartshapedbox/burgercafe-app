@@ -19,6 +19,7 @@ class App():
         self.bgcolor = '#fede00'
         self.fgcolor = '#000000'
         self.menu_fgcolor = '#b29b00'
+        self.button_hovercolor = '#edd002'
         self.showMainPage()
         self.root.mainloop()
         
@@ -43,9 +44,8 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.hover(self.button,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 30, y = 30, width = 25, height = 25)
-        
     
     
     def showMenu(self):
@@ -69,7 +69,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-            self.hover(i,'#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+            self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
     
 
     def hover(self, btn, colorOnHover, colorOnLeave, colorfgOnHover, colorfgOnLeave):
@@ -78,7 +78,7 @@ class App():
         
     
     def showBackground(self):
-        self.bg = Label(self.root, background = '#fede00')
+        self.bg = Label(self.root, background = self.bgcolor)
         self.bg.place(width = 350, height = 500)
     
     
@@ -93,7 +93,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.hover(self.button,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 10, y = 10, width = 25, height = 25)
     
     
@@ -108,7 +108,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.hover(self.button,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 10, y = 35, width = 25, height = 25)
 
     
@@ -128,7 +128,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.hover(self.button,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 315, y = 225, width = 25, height = 25)
         
     
@@ -148,7 +148,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-        self.hover(self.button, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+        self.hover(self.button,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.button.place(x = 5, y = 225, width = 25, height = 25)
     
     
@@ -164,32 +164,32 @@ class App():
         self.pancakewidget.place(x = -130, y = 160)
         self.cupcakewidget = Label(self.root, image = self.cupcake, background = self.bgcolor)
         self.cupcakewidget.place(x = 200, y = 300)
-        self.header_fontwidget1 = Label(self.burgerwidget, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 150)
+        self.header_fontwidget1 = Label(self.burgerwidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 150)
         self.header_fontwidget1['text'] = 'Burger with Vegetables'
-        self.textwidget1 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 140)
+        self.textwidget1 = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 140)
         self.textwidget1['text'] = 'Enjoy deliciously simple craft Classic Burger with a juicy beef patty, lettuce, tomato, onions and pickles on a bun.'
         self.header_fontwidget1.place(x = 0, y = 50, width = 160)
         self.textwidget1.place(x = 25, y = 40, width = 140)
         
-        self.header_fontwidget2 = Label(self.pancakewidget, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 170)
+        self.header_fontwidget2 = Label(self.pancakewidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 170)
         self.header_fontwidget2['text'] = 'Pancakes with Blueberries'
-        self.textwidget2 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 120)
+        self.textwidget2 = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 120)
         self.textwidget2['text'] = 'Super thick and fluffy pancakes! Melt in your mouth, golden brown, and bursting with blueberries.'
         self.header_fontwidget2.place(x = 150, y = 20, width = 180)
         self.textwidget2.place(x = 195, y = 200, width = 150)
         
-        self.header_fontwidget3 = Label(self.cupcakewidget, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 130)
+        self.header_fontwidget3 = Label(self.cupcakewidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 130)
         self.header_fontwidget3['text'] = 'Chocolate Cupcake'
-        self.textwidget3 = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 160)
+        self.textwidget3 = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 160)
         self.textwidget3['text'] = 'These delicious cupcake has a chocolate centre once you get past the cream topping.'
         self.header_fontwidget3.place(x = 0, y = 80, width = 130)
         self.textwidget3.place(x = 25, y = 405, width = 150)
         
-        self.output1 = Message(self.root, text = '0', background = '#fede00', width = 5)
+        self.output1 = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output1.place(x = 174, y = 150)
-        self.output2 = Message(self.root, text = '0', background = '#fede00', width = 5)
+        self.output2 = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output2.place(x = 150, y = 345)
-        self.output3 = Message(self.root, text = '0', background = '#fede00', width = 5)
+        self.output3 = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output3.place(x = 208, y = 470)
         
         self.showPrice()
@@ -199,9 +199,9 @@ class App():
     
     
     def showPrice(self):
-        self.pricewidget1 = Label(self.burgerwidget, text = '$2.50', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
-        self.pricewidget2 = Label(self.pancakewidget, text = '$6.75', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
-        self.pricewidget3 = Label(self.cupcakewidget, text = '$2.15', background = '#fede00', font = self.price_font, justify = LEFT, wraplength = 45)
+        self.pricewidget1 = Label(self.burgerwidget, text = '$2.50', background = self.bgcolor, font = self.price_font, justify = LEFT, wraplength = 45)
+        self.pricewidget2 = Label(self.pancakewidget, text = '$6.75', background = self.bgcolor, font = self.price_font, justify = LEFT, wraplength = 45)
+        self.pricewidget3 = Label(self.cupcakewidget, text = '$2.15', background = self.bgcolor, font = self.price_font, justify = LEFT, wraplength = 45)
         self.pricewidget1.place(x = 20, y = 125, width = 50, height = 25)
         self.pricewidget2.place(x = 277, y = 130, width = 50, height = 25)
         self.pricewidget3.place(x = 5, y = 115, width = 50, height = 25)
@@ -221,7 +221,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-            self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+            self.hover(i,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.basketButton1.place(x = 20, y = 150, width = 25, height = 25)
         self.basketButton2.place(x = 277, y = 155, width = 25, height = 25)
         self.basketButton3.place(x = 4, y = 140, width = 25, height = 25)
@@ -233,7 +233,7 @@ class App():
         self.increaseButton3 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton3'))
         for i in (self.increaseButton1, self.increaseButton2, self.increaseButton3):
             i.configure(
-            background = '#fede00',
+            background = self.bgcolor,
             foreground = self.fgcolor,
             font = self.font,
             relief = 'flat',
@@ -241,7 +241,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-            self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+            self.hover(i,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.increaseButton1.place(x = 197, y = 149, width = 25, height = 25)
         self.increaseButton2.place(x = 173, y = 344, width = 25, height = 25)
         self.increaseButton3.place(x = 231, y = 469, width = 25, height = 25)
@@ -253,7 +253,7 @@ class App():
         self.decreaseButton3 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton3'))
         for i in (self.decreaseButton1, self.decreaseButton2, self.decreaseButton3):
             i.configure(
-            background = '#fede00',
+            background = self.bgcolor,
             foreground = self.fgcolor,
             font = self.font,
             relief = 'flat',
@@ -261,7 +261,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-            self.hover(i, '#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+            self.hover(i,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.decreaseButton1.place(x = 146, y = 149, width = 25, height = 25)
         self.decreaseButton2.place(x = 122, y = 344, width = 25, height = 25)
         self.decreaseButton3.place(x = 180, y = 469, width = 25, height = 25)
@@ -302,7 +302,7 @@ class App():
         self.decor = PhotoImage(file = 'assets\\decor_about_us.png')
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
-        self.textwidget = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 260)
+        self.textwidget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 260)
         self.textwidget['text'] = 'Welcome to Burger Cafe!\n\nHome of the best burgers. Located in the beautiful city, Burger Cafe is a family-friendly cafe that serves the best burgers, pancakes and cupcakes.\n\nAll of our products are prepared with the finest and freshest ingredients!'
         self.textwidget.place(x = 45, y = 50, width = 260)
         
@@ -328,7 +328,7 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-            self.hover(i,'#edd002','#fede00', self.menu_fgcolor, self.fgcolor)
+            self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.recipe1.place(x = 45, y = 50, width = 205)
         self.recipe2.place(x = 45, y = 80, width = 205)
         self.recipe3.place(x = 45, y = 110, width = 205)
@@ -340,8 +340,8 @@ class App():
         self.showBackButton()
         self.showNextButton(i)
         self.showPreviousButton(i)
-        self.textwidget = Label(self.root, text = '', background = '#fede00', font = self.font, justify = LEFT, wraplength = 260)
-        self.header_fonttwidget = Label(self.root, text = '', background = '#fede00', font = self.header_font, justify = LEFT, wraplength = 260)
+        self.textwidget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 260)
+        self.header_fonttwidget = Label(self.root, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 260)
         if i == 'burger':
             self.header_fonttwidget['text'] = 'Burger with Vegetables'
             self.textwidget['text'] = 'Ingredients:\n* 1 small onion, diced,* 500g good-quality beef mince,* 1 egg,* 1 tbsp vegetable oil,* 4 burger buns,* all or any of the following to serve: sliced tomato, beetroot, horseradish sauce, mayonnaise, ketchup, handful iceberg lettuce, rocket, watercress\n\nMethod:\nTip 500g beef mince into a bowl with 1 small diced onion and 1 egg, then mix. Divide the mixture into four. Roll the mixture into balls and squeeze down to flatten into patties. Put on a plate, cover with cling film and leave in the fridge to firm up for at least 30 mins. Heat the barbecue to medium hot. Lightly brush one side of each burger with vegetable oil. Place the burgers, oil-side down, on the barbecue. Cook for 5 mins until the meat is lightly charred. Oil the other side, then turn over using tongs. Slice four burger buns in half. Place, cut-side down, on the barbecue rack and toast for 1 min until they are lightly charred. Place a burger inside each bun.'

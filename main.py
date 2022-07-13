@@ -13,6 +13,7 @@ class App():
         self.root.resizable(0, 0)
         # self.root.attributes('-alpha', 0.8)
         self.root.iconbitmap('assets\\logo.ico')
+        
         self.font = ('TkMenuFont',10)
         self.header_font = ('TkMenuFont',10, 'bold')
         self.price_font = ('TkMenuFont',12, 'bold')
@@ -34,8 +35,8 @@ class App():
         self.decorwidget.place(x = 60, y = 250)
         self.showMenu()
         
-        self.button = Button(self.root, text = '🛒')
-        self.button.configure(
+        self.mainCartButton = Button(self.root, text = '🛒', command = self.showCartPage)
+        self.mainCartButton.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
             font = self.font,
@@ -44,8 +45,8 @@ class App():
             activebackground = self.bgcolor,
             activeforeground = self.menu_fgcolor
             )
-        self.hover(self.button,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.button.place(x = 30, y = 30, width = 25, height = 25)
+        self.hover(self.mainCartButton, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+        self.mainCartButton.place(x = 30, y = 30, width = 25, height = 25)
     
     
     def showMenu(self):
@@ -80,6 +81,11 @@ class App():
     def showBackground(self):
         self.bg = Label(self.root, background = self.bgcolor)
         self.bg.place(width = 350, height = 500)
+        
+        
+    def showCartPage(self):
+        self.showBackground()
+        self.showCloseButton()
     
     
     def showCloseButton(self):
@@ -193,7 +199,7 @@ class App():
         self.output3.place(x = 208, y = 470)
         
         self.showPrice()
-        self.showBasketButton()
+        # self.showCartButtons()
         self.showIncreaseButton()
         self.showDecreaseButton()
     
@@ -202,29 +208,46 @@ class App():
         self.pricewidget1 = Label(self.burgerwidget, text = '$2.50', background = self.bgcolor, font = self.price_font, justify = LEFT, wraplength = 45)
         self.pricewidget2 = Label(self.pancakewidget, text = '$6.75', background = self.bgcolor, font = self.price_font, justify = LEFT, wraplength = 45)
         self.pricewidget3 = Label(self.cupcakewidget, text = '$2.15', background = self.bgcolor, font = self.price_font, justify = LEFT, wraplength = 45)
-        self.pricewidget1.place(x = 20, y = 125, width = 50, height = 25)
-        self.pricewidget2.place(x = 277, y = 130, width = 50, height = 25)
-        self.pricewidget3.place(x = 5, y = 115, width = 50, height = 25)
+        self.pricewidget1.place(x = 10, y = 72, width = 50, height = 25)
+        self.pricewidget2.place(x = 275, y = 42, width = 50, height = 25)
+        self.pricewidget3.place(x = 0, y = 102, width = 50, height = 25)
     
     
-    def showBasketButton(self):
-        self.basketButton1 = Button(self.burgerwidget, text = '🛒')
-        self.basketButton2 = Button(self.pancakewidget, text = '🛒')
-        self.basketButton3 = Button(self.cupcakewidget, text = '🛒')
-        for i in (self.basketButton1, self.basketButton2, self.basketButton3):
-            i.configure(
-            background = self.bgcolor,
-            foreground = self.fgcolor,
-            font = self.font,
-            relief = 'flat',
-            cursor = 'hand2',
-            activebackground = self.bgcolor,
-            activeforeground = self.menu_fgcolor
-            )
-            self.hover(i,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.basketButton1.place(x = 20, y = 150, width = 25, height = 25)
-        self.basketButton2.place(x = 277, y = 155, width = 25, height = 25)
-        self.basketButton3.place(x = 4, y = 140, width = 25, height = 25)
+    # def showCartButtons(self):
+    #     self.cartButton1 = Button(self.burgerwidget, text = '🛒')
+    #     self.cartButton2 = Button(self.pancakewidget, text = '🛒')
+    #     self.cartButton3 = Button(self.cupcakewidget, text = '🛒')
+    #     for i in (self.cartButton1, self.cartButton2, self.cartButton3):
+    #         i.configure(
+    #         background = self.bgcolor,
+    #         foreground = self.fgcolor,
+    #         font = self.font,
+    #         relief = 'flat',
+    #         cursor = 'hand2',
+    #         activebackground = self.bgcolor,
+    #         activeforeground = self.menu_fgcolor
+    #         )
+    #         self.hover(i,  self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+    #     self.cartButton1.place(x = 20, y = 150, width = 25, height = 25)
+    #     self.cartButton2.place(x = 277, y = 155, width = 25, height = 25)
+    #     self.cartButton3.place(x = 4, y = 140, width = 25, height = 25)
+    
+    
+    def showCartButton(self):
+        for i in (self.output1, self.output2, self.output3):
+            if int(i['text']) > 0:
+                self.mainCartButton = Button(self.root, text = '🛒', command = self.showCartPage)
+                self.mainCartButton.configure(
+                    background = self.bgcolor,
+                    foreground = self.fgcolor,
+                    font = self.font,
+                    relief = 'flat',
+                    cursor = 'hand2',
+                    activebackground = self.bgcolor,
+                    activeforeground = self.menu_fgcolor
+                    )
+                self.hover(self.mainCartButton, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+                self.mainCartButton.place(x = 35, y = 10, width = 25, height = 25)
         
         
     def showIncreaseButton(self):
@@ -265,19 +288,22 @@ class App():
         self.decreaseButton1.place(x = 146, y = 149, width = 25, height = 25)
         self.decreaseButton2.place(x = 122, y = 344, width = 25, height = 25)
         self.decreaseButton3.place(x = 180, y = 469, width = 25, height = 25)
-            
+
             
     def increase(self, i, y):
         self.val = int(i)
         if y == 'increaseButton1' and int(self.output1['text']) < 9:
             self.val += int(self.output1['text'])
             self.output1['text'] = str(self.val)
+            self.showCartButton()
         elif y == 'increaseButton2' and int(self.output2['text']) < 9:
             self.val += int(self.output2['text'])
             self.output2['text'] = str(self.val)
+            self.showCartButton()
         elif y == 'increaseButton3' and int(self.output3['text']) < 9:
             self.val += int(self.output3['text'])
             self.output3['text'] = str(self.val)
+            self.showCartButton()
             
             
     def decrease(self, i, y):
@@ -293,7 +319,7 @@ class App():
         elif y == 'decreaseButton3' and int(self.output3['text']) != 0:
             x = int(self.output3['text'])
             x -= self.val
-            self.output3['text'] = str(x)
+            self.output3['text'] = str(x)    
         
     
     def showAboutUsPage(self):

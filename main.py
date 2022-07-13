@@ -34,32 +34,21 @@ class App():
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
         self.showMenu()
-        
-        self.mainCartButton = Button(self.root, text = '🛒', command = self.showCartPage)
-        self.mainCartButton.configure(
-            background = self.bgcolor,
-            foreground = self.fgcolor,
-            font = self.font,
-            relief = 'flat',
-            cursor = 'hand2',
-            activebackground = self.bgcolor,
-            activeforeground = self.menu_fgcolor
-            )
-        self.hover(self.mainCartButton, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.mainCartButton.place(x = 30, y = 30, width = 25, height = 25)
     
     
     def showMenu(self):
         self.button_aboutus = Button(self.root, text = 'ABOUT US', command = self.showAboutUsPage)
-        self.button_aboutus.place(x = 30, y = 200, width = 80)
+        self.button_aboutus.place(x = 20, y = 200, width = 80)
         self.button_menu = Button(self.root, text = 'MENU', command = self.showMenuPage)
-        self.button_menu.place(x = 30, y = 225, width = 80)
+        self.button_menu.place(x = 20, y = 225, width = 80)
         self.button_recipes = Button(self.root, text = 'RECIPES', command = self.showRecipesPage)
-        self.button_recipes.place(x = 30, y = 250, width = 80)
+        self.button_recipes.place(x = 20, y = 250, width = 80)
         self.button_contacts = Button(self.root, text = 'CONTACTS', command = self.showContactsPage)
-        self.button_contacts.place(x = 30, y = 275, width = 80)
+        self.button_contacts.place(x = 20, y = 275, width = 80)
+        self.mainCartButton = Button(self.root, text = '🛒', command = self.showCartPage)
+        self.mainCartButton.place(x = 20, y = 305, width = 80, height = 25)
         
-        for i in (self.button_aboutus, self.button_menu, self.button_recipes, self.button_contacts):
+        for i in (self.button_aboutus, self.button_menu, self.button_recipes, self.button_contacts, self.mainCartButton):
             i.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,

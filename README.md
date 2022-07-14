@@ -4,7 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/heartshapedbox/burgercafe-menu)
 
 
-# burgercafe-menu
+# burgercafe-app
 ## BurgerCafe menu & recipes app.
 
 Stack:

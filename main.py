@@ -1,6 +1,6 @@
 from tkinter import *
 import os
-os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-menu\\')
+os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-app\\')
 
 class App():
     def __init__(self): 

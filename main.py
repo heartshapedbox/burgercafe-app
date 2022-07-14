@@ -144,10 +144,27 @@ class App():
         self.output_cupcakewidget = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output_cupcakewidget.place(x = 208, y = 470)
         
+        self.next_button = Button(self.root, text = '>', command = self.showNextPage)
+        self.previous_button = Button(self.root, text = '<', command = self.showPreviousPage)
+        for i in (self.next_button, self.previous_button):
+            i.configure(
+                background = self.bgcolor,
+                foreground = self.fgcolor,
+                font = self.font,
+                relief = 'flat',
+                cursor = 'hand2',
+                activebackground = self.bgcolor,
+                activeforeground = self.menu_fgcolor
+                )
+            self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+        self.previous_button.place(x = 5, y = 225, width = 25, height = 25)
+        self.next_button.place(x = 315, y = 225, width = 25, height = 25)
+        
         self.showPrice()
         # self.showBasketButtons()
         self.showIncreaseButton()
         self.showDecreaseButton()
+        
         
     
     def showCloseButton(self):
@@ -406,26 +423,6 @@ class App():
         self.text_widget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 260)
         self.text_widget['text'] = 'Schedule & Contacts.\n\nBurger Cafe is open 7 days a week & offers delivery.'
         self.text_widget.place(x = 45, y = 50, width = 260)
-        self.webButton = Button(self.root, text = '🌐')
-        self.twitterButton = Button(self.root, text = '🐦')
-        self.instagramButton = Button(self.root, text = '📸')
-        self.pinterestButton = Button(self.root, text = '🍭')
-        
-        for i in (self.webButton, self.twitterButton, self.instagramButton, self.pinterestButton):
-            i.configure(
-                background = self.bgcolor,
-                foreground = self.fgcolor,
-                font = self.font,
-                relief = 'flat',
-                cursor = 'hand2',
-                activebackground = self.bgcolor,
-                activeforeground = self.menu_fgcolor
-                )
-            self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.webButton.place(x = 40, y = 220, width = 25, height = 25)
-        self.twitterButton.place(x = 65, y = 220, width = 25, height = 25)
-        self.instagramButton.place(x = 90, y = 220, width = 25, height = 25)
-        self.pinterestButton.place(x = 115, y = 220, width = 25, height = 25)
         
     
     def showOrderPage(self):
@@ -447,6 +444,14 @@ class App():
         except AttributeError:
             pass
         self.showMainPage()
+
+
+    def showNextPage(self):
+        self.header_cupcakewidget['text'] = "Text, Text, Text"
         
+    def showPreviousPage(self):
+        self.header_cupcakewidget['text'] = "Cake"
+    
+
 if __name__ == '__main__':
     App()

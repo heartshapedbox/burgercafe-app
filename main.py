@@ -125,10 +125,10 @@ class App():
         
         self.header_pancakewidget = Label(self.pancakewidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 170)
         self.header_pancakewidget['text'] = 'Pancakes with Blueberries'
-        self.text_pancakewidget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 120)
-        self.text_pancakewidget['text'] = 'Super thick and fluffy pancakes! Melt in your mouth, golden brown, and bursting with blueberries.'
+        self.text_pancakewidget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 110)
+        self.text_pancakewidget['text'] = 'Thick and fluffy pancakes! Melt in your mouth, golden brown, and bursting with blueberries.'
         self.header_pancakewidget.place(x = 150, y = 20, width = 180)
-        self.text_pancakewidget.place(x = 195, y = 200, width = 150)
+        self.text_pancakewidget.place(x = 200, y = 203, width = 110)
         
         self.header_cupcakewidget = Label(self.cupcakewidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 130)
         self.header_cupcakewidget['text'] = 'Chocolate Cupcake'
@@ -144,28 +144,26 @@ class App():
         self.output_cupcakewidget = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output_cupcakewidget.place(x = 208, y = 470)
         
-        self.next_button = Button(self.root, text = '>', command = self.showNextPage)
-        self.previous_button = Button(self.root, text = '<', command = self.showPreviousPage)
-        for i in (self.next_button, self.previous_button):
-            i.configure(
-                background = self.bgcolor,
-                foreground = self.fgcolor,
-                font = self.font,
-                relief = 'flat',
-                cursor = 'hand2',
-                activebackground = self.bgcolor,
-                activeforeground = self.menu_fgcolor
-                )
-            self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.previous_button.place(x = 5, y = 225, width = 25, height = 25)
-        self.next_button.place(x = 315, y = 225, width = 25, height = 25)
+        self.next_button = Button(self.root, text = '>', command = self.showNextMenuPage)
+        # self.previous_button = Button(self.root, text = '<', command = self.showPreviousPage)
+        self.next_button.configure(
+            background = self.bgcolor,
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+        self.hover(self.next_button, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+        # self.previous_button.place(x = 20, y = 225, width = 25, height = 25)
+        self.next_button.place(x = 305, y = 225, width = 25, height = 25)
         
         self.showPrice()
         # self.showBasketButtons()
         self.showIncreaseButton()
         self.showDecreaseButton()
-        
-        
+    
     
     def showCloseButton(self):
         self.button = Button(self.root, text = 'x', command = self.closePage)
@@ -199,7 +197,7 @@ class App():
             activeforeground = self.menu_fgcolor
             )
         self.hover(self.button, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.button.place(x = 315, y = 225, width = 25, height = 25)
+        self.button.place(x = 305, y = 225, width = 25, height = 25)
         
     
     def showPreviousButton(self, i):
@@ -219,7 +217,7 @@ class App():
             activeforeground = self.menu_fgcolor
             )
         self.hover(self.button, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-        self.button.place(x = 5, y = 225, width = 25, height = 25)
+        self.button.place(x = 20, y = 225, width = 25, height = 25)
         
     
     def showBackButton(self):
@@ -362,7 +360,7 @@ class App():
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
         self.text_widget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 260)
-        self.text_widget['text'] = 'Welcome to Burger Cafe!\n\nHome of the best burgers. Located in the beautiful city, Burger Cafe is a family-friendly cafe that serves the best burgers, pancakes and cupcakes.\n\nAll of our products are prepared with the finest and freshest ingredients!'
+        self.text_widget['text'] = 'Welcome to Burger Cafe!\n\nHome of the best burgers. Located in the beautiful city, Burger Cafe is a family-friendly cafe that serves the best burgers with refreshing cola. You will be delighted with our apple pie, brownie, pancakes and cupcakes.\n\nAll of our products are prepared with the finest and freshest ingredients!'
         self.text_widget.place(x = 45, y = 50, width = 260)
         
     
@@ -444,13 +442,69 @@ class App():
         except AttributeError:
             pass
         self.showMainPage()
-
-
-    def showNextPage(self):
-        self.header_cupcakewidget['text'] = "Text, Text, Text"
         
-    def showPreviousPage(self):
-        self.header_cupcakewidget['text'] = "Cake"
+        
+    def showNextMenuPage(self):
+        self.showBackground()
+        self.showCloseButton()
+        self.applepie = PhotoImage(file = 'assets\\applepie.png')
+        self.browniecake = PhotoImage(file = 'assets\\browniecake.png')
+        self.cola = PhotoImage(file = 'assets\\cola.png')
+        self.applepiewidget = Label(self.root, image = self.applepie, background = self.bgcolor)
+        self.applepiewidget.place(x = 130, y = -60)
+        self.browniecakewidget = Label(self.root, image = self.browniecake, background = self.bgcolor)
+        self.browniecakewidget.place(x = -50, y = 160)
+        self.colawidget = Label(self.root, image = self.cola, background = self.bgcolor)
+        self.colawidget.place(x = 180, y = 300)
+        
+        self.header_applepie = Label(self.applepiewidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 150)
+        self.header_applepie['text'] = 'Apple Pie'
+        self.text_applepie = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 140)
+        self.text_applepie['text'] = 'Enjoy deliciously simple craft Classic Burger with a juicy beef patty, lettuce, tomato, onions and pickles on a bun.'
+        self.header_applepie.place(x = 0, y = 50, width = 160)
+        self.text_applepie.place(x = 25, y = 50, width = 140)
+        
+        self.header_browniecake = Label(self.browniecakewidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 170)
+        self.header_browniecake['text'] = 'Brownie Cake'
+        self.text_browniecake = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 110)
+        self.text_browniecake['text'] = 'Thick and fluffy pancakes! Melt in your mouth, golden brown, and bursting with blueberries.'
+        self.header_browniecake.place(x = 150, y = 20, width = 180)
+        self.text_browniecake.place(x = 200, y = 203, width = 110)
+        
+        self.header_cola = Label(self.colawidget, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 130)
+        self.header_cola['text'] = 'Refreshing Cola'
+        self.text_cola = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 160)
+        self.text_cola['text'] = 'These delicious cupcake has a chocolate centre once you get past the cream topping.'
+        self.header_cola.place(x = 0, y = 80, width = 130)
+        self.text_cola.place(x = 25, y = 405, width = 150)
+        
+        self.output_applepie = Message(self.root, text = '0', background = self.bgcolor, width = 5)
+        self.output_applepie.place(x = 174, y = 150)
+        self.output_browniecake = Message(self.root, text = '0', background = self.bgcolor, width = 5)
+        self.output_browniecake.place(x = 150, y = 345)
+        self.output_cola = Message(self.root, text = '0', background = self.bgcolor, width = 5)
+        self.output_cola.place(x = 208, y = 470)
+        
+        self.previous_button = Button(self.root, text = '<', command = self.showPreviousMenuPage)
+        self.previous_button.configure(
+            background = self.bgcolor,
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
+        self.hover(self.previous_button, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+        self.previous_button.place(x = 20, y = 225, width = 25, height = 25)
+        
+        self.showPrice()
+        self.showIncreaseButton()
+        self.showDecreaseButton()
+        
+    
+    def showPreviousMenuPage(self):
+        self.showMenuPage()
     
 
 if __name__ == '__main__':

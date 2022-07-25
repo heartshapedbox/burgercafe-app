@@ -2,6 +2,7 @@ from tkinter import *
 import os
 os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-app\\')
 
+
 class App():
     def __init__(self): 
         self.root = Tk()
@@ -21,7 +22,8 @@ class App():
         self.fgcolor = '#000000'
         self.menu_fgcolor = '#b29b00'
         self.button_hovercolor = '#edd002'
-        self.showMainPage()
+        self.order_dict = {}
+        self.showHome()
         self.root.mainloop()
         
         
@@ -35,7 +37,7 @@ class App():
         btn.bind("<Leave>", func = lambda i: btn.config(background = colorOnLeave, foreground = colorfgOnLeave))
         
         
-    def showMainPage(self):
+    def showHome(self):
         self.showBackground()
         self.logo = PhotoImage(file = 'assets\\logo.png')
         self.logowidget = Label(self.root, image = self.logo, background = self.bgcolor)
@@ -43,21 +45,21 @@ class App():
         self.decor = PhotoImage(file = 'assets\\decor.png')
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
-        self.showMenuButtons()
-        self.showUserButton()
-        self.showWebButton()
+        self.showMenu()
+        self.showUser()
+        self.showWeb()
     
     
-    def showMenuButtons(self):
-        self.button_aboutus = Button(self.root, text = 'ABOUT US', command = self.showAboutUsPage)
+    def showMenu(self):
+        self.button_aboutus = Button(self.root, text = 'ABOUT US', command = self.showAboutUs)
         self.button_aboutus.place(x = 20, y = 200, width = 80, height = 25)
-        self.button_menu = Button(self.root, text = 'MENU', command = self.showMenuPage)
+        self.button_menu = Button(self.root, text = 'MENU', command = self.showPage1)
         self.button_menu.place(x = 20, y = 225, width = 80, height = 25)
-        self.button_recipes = Button(self.root, text = 'RECIPES', command = self.showRecipesPage)
+        self.button_recipes = Button(self.root, text = 'RECIPES', command = self.showRecipes)
         self.button_recipes.place(x = 20, y = 250, width = 80, height = 25)
-        self.button_contacts = Button(self.root, text = 'CONTACTS', command = self.showContactsPage)
+        self.button_contacts = Button(self.root, text = 'CONTACTS', command = self.showContacts)
         self.button_contacts.place(x = 20, y = 275, width = 80, height = 25)
-        self.basketButton = Button(self.root, text = '🛒', command = self.showOrderPage)
+        self.basketButton = Button(self.root, text = '🛒', command = self.bill)
         self.basketButton.place(x = 45, y = 20, width = 25, height = 25)
         
         for i in (self.button_aboutus, self.button_menu, self.button_recipes, self.button_contacts, self.basketButton):
@@ -74,8 +76,8 @@ class App():
             self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
     
     
-    def showUserButton(self):
-        self.button = Button(self.root, text = '👤', command = self.closePage)
+    def showUser(self):
+        self.button = Button(self.root, text = '👤', command = self.close)
         self.button.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -89,8 +91,8 @@ class App():
         self.button.place(x = 305, y = 20, width = 25, height = 25)
     
     
-    def showWebButton(self):
-        self.button = Button(self.root, text = '🌐', command = self.closePage)
+    def showWeb(self):
+        self.button = Button(self.root, text = '🌐', command = self.close)
         self.button.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -104,9 +106,18 @@ class App():
         self.button.place(x = 20, y = 20, width = 25, height = 25)
     
     
-    def showMenuPage(self):
+    def showPage1(self):
+        try:
+            self.values2 = (self.output_applepie, self.output_browniecake, self.output_cola)
+            self.names_page2 = ('Apple Pie','Brownie','Cola')
+            for i in range(0, len(self.values2)):
+                self.order_dict[self.names_page2[i]] = self.values2[i]['text']
+        except AttributeError:
+            pass
+        
+        self.page = 1
         self.showBackground()
-        self.showCloseButton()
+        self.showClose()
         self.burger = PhotoImage(file = 'assets\\burger.png')
         self.cupcake = PhotoImage(file = 'assets\\cupcake.png')
         self.pancake = PhotoImage(file = 'assets\\pancake.png')
@@ -144,7 +155,7 @@ class App():
         self.output_cupcakewidget = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output_cupcakewidget.place(x = 208, y = 470)
         
-        self.next_button = Button(self.root, text = '>', command = self.showNextMenuPage)
+        self.next_button = Button(self.root, text = '>', command = self.showPage2)
         self.next_button.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -158,13 +169,20 @@ class App():
         self.next_button.place(x = 305, y = 225, width = 25, height = 25)
         
         self.showPrice()
-        self.showIncreaseButton()
-        self.showDecreaseButton()
+        self.showIncrease()
+        self.showDecrease()
     
     
-    def showNextMenuPage(self):
+    def showPage2(self):
+        self.page = 2
+        
+        self.values1 = (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget)
+        self.names_page1 = ('Burger','Pancake','Cupcake')
+        for i in range(0, len(self.values1)):
+            self.order_dict[self.names_page1[i]] = self.values1[i]['text']    
+        
         self.showBackground()
-        self.showCloseButton()
+        self.showClose()
         self.applepie = PhotoImage(file = 'assets\\applepie.png')
         self.browniecake = PhotoImage(file = 'assets\\browniecake.png')
         self.cola = PhotoImage(file = 'assets\\cola.png')
@@ -203,7 +221,7 @@ class App():
         self.output_cola = Message(self.root, text = '0', background = self.bgcolor, width = 5)
         self.output_cola.place(x = 208, y = 470)
         
-        self.previous_button = Button(self.root, text = '<', command = self.showPreviousMenuPage)
+        self.previous_button = Button(self.root, text = '<', command = self.showPage1)
         self.previous_button.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -222,12 +240,12 @@ class App():
         self.pricewidget1.place(x = 45, y = 100, width = 50, height = 25)
         self.pricewidget2.place(x = 180, y = 42, width = 50, height = 25)
         self.pricewidget3.place(x = 0, y = 102, width = 50, height = 25)
-        self.showIncreaseButton()
-        self.showDecreaseButton()
+        self.showIncrease()
+        self.showDecrease()
     
     
-    def showCloseButton(self):
-        self.button = Button(self.root, text = 'x', command = self.closePage)
+    def showClose(self):
+        self.button = Button(self.root, text = 'x', command = self.close)
         self.button.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -241,7 +259,7 @@ class App():
         self.button.place(x = 20, y = 20, width = 25, height = 25)
 
     
-    def showNextButton(self, i):
+    def showNext(self, i):
         if i == 'burger':
             self.button = Button(self.root, text = '>', command = lambda:self.showRecipe('pancake'))
         elif i == "pancake":
@@ -261,7 +279,7 @@ class App():
         self.button.place(x = 305, y = 225, width = 25, height = 25)
         
     
-    def showPreviousButton(self, i):
+    def showPrevious(self, i):
         if i == 'burger':
             self.button = Button(self.root, text = '<', command = lambda:self.showRecipe('cupcake'))
         elif i == "cupcake":
@@ -281,8 +299,8 @@ class App():
         self.button.place(x = 20, y = 225, width = 25, height = 25)
         
     
-    def showBackButton(self):
-        self.button = Button(self.root, text = '<', command = self.showRecipesPage)
+    def showBack(self):
+        self.button = Button(self.root, text = '<', command = self.showRecipes)
         self.button.configure(
             background = self.bgcolor,
             foreground = self.fgcolor,
@@ -305,24 +323,29 @@ class App():
         self.pricewidget3.place(x = 0, y = 102, width = 50, height = 25)
     
     
-    def showBasketButton(self):
-        for i in (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget):
-            if int(i['text']) > 0:
-                self.basketButton = Button(self.root, text = '🛒', command = self.showOrderPage)
-                self.basketButton.configure(
-                    background = self.bgcolor,
-                    foreground = self.fgcolor,
-                    font = self.font,
-                    relief = 'flat',
-                    cursor = 'hand2',
-                    activebackground = self.bgcolor,
-                    activeforeground = self.menu_fgcolor
-                    )
-                self.hover(self.basketButton, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
-                self.basketButton.place(x = 45, y = 20, width = 25, height = 25)
+    def showBasket(self):
+        if self.page == 1:
+            for i in (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget):
+                if int(i['text']) > 0:
+                    self.basketButton = Button(self.root, text = '🛒', command = self.count)
+        else:
+             for i in (self.output_applepie, self.output_browniecake, self.output_cola):
+                if int(i['text']) > 0:
+                    self.basketButton = Button(self.root, text = '🛒', command = self.count)
+        self.basketButton.configure(
+                        background = self.bgcolor,
+                        foreground = self.fgcolor,
+                        font = self.font,
+                        relief = 'flat',
+                        cursor = 'hand2',
+                        activebackground = self.bgcolor,
+                        activeforeground = self.menu_fgcolor
+                        )
+        self.hover(self.basketButton, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
+        self.basketButton.place(x = 45, y = 20, width = 25, height = 25)
         
         
-    def showIncreaseButton(self):
+    def showIncrease(self):
         self.increaseButton1 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton1'))
         self.increaseButton2 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton2'))
         self.increaseButton3 = Button(self.root, text = '+', command = lambda:self.increase(1, 'increaseButton3'))
@@ -342,7 +365,7 @@ class App():
         self.increaseButton3.place(x = 231, y = 469, width = 25, height = 25)
     
     
-    def showDecreaseButton(self):
+    def showDecrease(self):
         self.decreaseButton1 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton1'))
         self.decreaseButton2 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton2'))
         self.decreaseButton3 = Button(self.root, text = '-', command = lambda:self.decrease(1, 'decreaseButton3'))
@@ -364,39 +387,67 @@ class App():
             
     def increase(self, i, y):
         self.val = int(i)
-        if y == 'increaseButton1' and int(self.output_burgerwidget['text']) < 9:
-            self.val += int(self.output_burgerwidget['text'])
-            self.output_burgerwidget['text'] = str(self.val)
-            self.showBasketButton()
-        elif y == 'increaseButton2' and int(self.output_pancakewidget['text']) < 9:
-            self.val += int(self.output_pancakewidget['text'])
-            self.output_pancakewidget['text'] = str(self.val)
-            self.showBasketButton()
-        elif y == 'increaseButton3' and int(self.output_cupcakewidget['text']) < 9:
-            self.val += int(self.output_cupcakewidget['text'])
-            self.output_cupcakewidget['text'] = str(self.val)
-            self.showBasketButton()
-            
+        if self.page == 1:
+            if y == 'increaseButton1' and int(self.output_burgerwidget['text']) < 9:
+                self.val += int(self.output_burgerwidget['text'])
+                self.output_burgerwidget['text'] = str(self.val)
+                self.showBasket()
+            elif y == 'increaseButton2' and int(self.output_pancakewidget['text']) < 9:
+                self.val += int(self.output_pancakewidget['text'])
+                self.output_pancakewidget['text'] = str(self.val)
+                self.showBasket()
+            elif y == 'increaseButton3' and int(self.output_cupcakewidget['text']) < 9:
+                self.val += int(self.output_cupcakewidget['text'])
+                self.output_cupcakewidget['text'] = str(self.val)
+                self.showBasket()
+        else:
+            if y == 'increaseButton1' and int(self.output_applepie['text']) < 9:
+                self.val += int(self.output_applepie['text'])
+                self.output_applepie['text'] = str(self.val)
+                self.showBasket()
+            elif y == 'increaseButton2' and int(self.output_browniecake['text']) < 9:
+                self.val += int(self.output_browniecake['text'])
+                self.output_browniecake['text'] = str(self.val)
+                self.showBasket()
+            elif y == 'increaseButton3' and int(self.output_cola['text']) < 9:
+                self.val += int(self.output_cola['text'])
+                self.output_cola['text'] = str(self.val)
+                self.showBasket()
+    
             
     def decrease(self, i, y):
         self.val = int(i)
-        if y == 'decreaseButton1' and int(self.output_burgerwidget['text']) != 0:
-            x = int(self.output_burgerwidget['text'])
-            x -= self.val
-            self.output_burgerwidget['text'] = str(x)
-        elif y == 'decreaseButton2' and int(self.output_pancakewidget['text']) != 0:
-            x = int(self.output_pancakewidget['text'])
-            x -= self.val
-            self.output_pancakewidget['text'] = str(x)
-        elif y == 'decreaseButton3' and int(self.output_cupcakewidget['text']) != 0:
-            x = int(self.output_cupcakewidget['text'])
-            x -= self.val
-            self.output_cupcakewidget['text'] = str(x)
+        if self.page == 1:
+            if y == 'decreaseButton1' and int(self.output_burgerwidget['text']) != 0:
+                x = int(self.output_burgerwidget['text'])
+                x -= self.val
+                self.output_burgerwidget['text'] = str(x)
+            elif y == 'decreaseButton2' and int(self.output_pancakewidget['text']) != 0:
+                x = int(self.output_pancakewidget['text'])
+                x -= self.val
+                self.output_pancakewidget['text'] = str(x)
+            elif y == 'decreaseButton3' and int(self.output_cupcakewidget['text']) != 0:
+                x = int(self.output_cupcakewidget['text'])
+                x -= self.val
+                self.output_cupcakewidget['text'] = str(x)
+        else:
+            if y == 'decreaseButton1' and int(self.output_applepie['text']) != 0:
+                x = int(self.output_applepie['text'])
+                x -= self.val
+                self.output_applepie['text'] = str(x)
+            elif y == 'decreaseButton2' and int(self.output_browniecake['text']) != 0:
+                x = int(self.output_browniecake['text'])
+                x -= self.val
+                self.output_browniecake['text'] = str(x)
+            elif y == 'decreaseButton3' and int(self.output_cola['text']) != 0:
+                x = int(self.output_cola['text'])
+                x -= self.val
+                self.output_cola['text'] = str(x)
         
     
-    def showAboutUsPage(self):
+    def showAboutUs(self):
         self.showBackground()
-        self.showCloseButton()
+        self.showClose()
         self.decor = PhotoImage(file = 'assets\\decor_about_us.png')
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
@@ -405,9 +456,9 @@ class App():
         self.text_widget.place(x = 45, y = 50, width = 260)
         
     
-    def showRecipesPage(self):
+    def showRecipes(self):
         self.showBackground()
-        self.showCloseButton()
+        self.showClose()
         self.decor = PhotoImage(file = 'assets\\decor_recipes.png')
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
@@ -434,9 +485,9 @@ class App():
     
     def showRecipe(self, i):
         self.showBackground()
-        self.showCloseButton()
-        self.showNextButton(i)
-        self.showPreviousButton(i)
+        self.showClose()
+        self.showNext(i)
+        self.showPrevious(i)
         self.text_widget = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 260)
         self.header_widget = Label(self.root, text = '', background = self.bgcolor, font = self.header_font, justify = LEFT, wraplength = 260)
         if i == 'burger':
@@ -450,12 +501,12 @@ class App():
             self.text_widget['text'] = 'Ingredients:\n* 110g softened butter,* 110g golden caster sugar,* 2 large eggs,* ½ tsp vanilla extract,* 110g self-raising flour,* 150g softened butter,* 300g icing sugar,* 1 tsp vanilla extract,* 3 tbsp milk\n\nMethod:\nHeat oven to 180C/160C fan/gas and fill a 12 cupcake tray with cases. Using a whisk beat 110g softened butter and 110g golden caster sugar together until pale and fluffy then whisk in 2 large eggs, one at a time, scraping down the sides of the bowl after each addition. Add ½ tsp vanilla extract, 110g self-raising flour and a pinch of salt, whisk until just combined then spoon the mixture into the cupcake cases. Bake for 15 mins until golden brown and a skewer inserted into the middle of each cake comes out clean. To make the buttercream, whisk 150g softened butter until super soft then add 300g icing sugar, 1 tsp vanilla extract and a pinch of salt. Whisk together until smooth then beat in 3 tbsp milk.'
         self.header_widget.place(x = 45, y = 35, width = 260)
         self.text_widget.place(x = 45, y = 65, width = 260)
-        self.showBackButton()
+        self.showBack()
         
     
-    def showContactsPage(self):
+    def showContacts(self):
         self.showBackground()
-        self.showCloseButton()
+        self.showClose()
         self.decor = PhotoImage(file = 'assets\\decor_contacts.png')
         self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
         self.decorwidget.place(x = 60, y = 250)
@@ -464,28 +515,34 @@ class App():
         self.text_widget.place(x = 45, y = 50, width = 260)
         
     
-    def showOrderPage(self):
+    def count(self):
+        if self.page == 1:
+            self.values1 = (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget)
+            self.names_page1 = ('Burger','Pancake','Cupcake')
+            for i in range(0, len(self.values1)):
+                self.order_dict[self.names_page1[i]] = self.values1[i]['text']
+        else:
+            self.values2 = (self.output_applepie, self.output_browniecake, self.output_cola)
+            self.names_page2 = ('Apple Pie','Brownie','Cola')
+            for i in range(0, len(self.values2)):
+                self.order_dict[self.names_page2[i]] = self.values2[i]['text']
+        self.bill()
+        
+        
+    def bill(self):
         self.showBackground()
-        self.showCloseButton()
+        self.showClose()
+        print(self.order_dict)
         
         
-    def closePage(self):
+    def close(self):
         try:
-            self.decorwidget.destroy()
-            self.text_widget.destroy()
-            self.burgerwidget.destroy()
-            self.pancakewidget.destroy()
-            self.cupcakewidget.destroy()
-            self.recipe1.destroy()
-            self.recipe2.destroy()
-            self.recipe3.destroy()
-            self.button.destroy()
+            for i in (self.decorwidget,self.text_widget,self.burgerwidget,self.pancakewidget,self.recipe1,self.recipe2,self.recipe3,self.button):
+                i.destroy()
         except AttributeError:
             pass
-        self.showMainPage()
-    
-    def showPreviousMenuPage(self):
-        self.showMenuPage()
+        self.order_dict = {}
+        self.showHome()
 
 if __name__ == '__main__':
     App()

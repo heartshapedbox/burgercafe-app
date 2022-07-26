@@ -1,5 +1,7 @@
+from lib2to3.pgen2.token import RIGHTSHIFT
 from tkinter import *
 import os
+from xml.dom.minidom import Attr
 os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-app\\')
 
 
@@ -23,6 +25,7 @@ class App():
         self.menu_fgcolor = '#b29b00'
         self.button_hovercolor = '#edd002'
         self.order_dict = {}
+        self.tmp_dict = {}
         self.showHome()
         self.root.mainloop()
         
@@ -107,14 +110,6 @@ class App():
     
     
     def showPage1(self):
-        try:
-            self.values2 = (self.output_applepie, self.output_browniecake, self.output_cola)
-            self.names_page2 = ('Apple Pie','Brownie','Cola')
-            for i in range(0, len(self.values2)):
-                self.order_dict[self.names_page2[i]] = self.values2[i]['text']
-        except AttributeError:
-            pass
-        
         self.page = 1
         self.showBackground()
         self.showClose()
@@ -149,11 +144,11 @@ class App():
         self.text_cupcakewidget.place(x = 25, y = 405, width = 150)
         
         self.output_burgerwidget = Message(self.root, text = '0', background = self.bgcolor, width = 5)
-        self.output_burgerwidget.place(x = 174, y = 150)
+        self.output_burgerwidget.place(x = 174, y = 149)
         self.output_pancakewidget = Message(self.root, text = '0', background = self.bgcolor, width = 5)
-        self.output_pancakewidget.place(x = 150, y = 345)
+        self.output_pancakewidget.place(x = 150, y = 320)
         self.output_cupcakewidget = Message(self.root, text = '0', background = self.bgcolor, width = 5)
-        self.output_cupcakewidget.place(x = 208, y = 470)
+        self.output_cupcakewidget.place(x = 208, y = 440)
         
         self.next_button = Button(self.root, text = '>', command = self.showPage2)
         self.next_button.configure(
@@ -171,16 +166,11 @@ class App():
         self.showPrice()
         self.showIncrease()
         self.showDecrease()
+        self.check_page()
     
     
     def showPage2(self):
         self.page = 2
-        
-        self.values1 = (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget)
-        self.names_page1 = ('Burger','Pancake','Cupcake')
-        for i in range(0, len(self.values1)):
-            self.order_dict[self.names_page1[i]] = self.values1[i]['text']    
-        
         self.showBackground()
         self.showClose()
         self.applepie = PhotoImage(file = 'assets\\applepie.png')
@@ -215,11 +205,11 @@ class App():
         self.text_cola.place(x = 25, y = 405, width = 160)
         
         self.output_applepie = Message(self.root, text = '0', background = self.bgcolor, width = 5)
-        self.output_applepie.place(x = 174, y = 150)
+        self.output_applepie.place(x = 174, y = 149)
         self.output_browniecake = Message(self.root, text = '0', background = self.bgcolor, width = 5)
-        self.output_browniecake.place(x = 150, y = 345)
+        self.output_browniecake.place(x = 150, y = 320)
         self.output_cola = Message(self.root, text = '0', background = self.bgcolor, width = 5)
-        self.output_cola.place(x = 208, y = 470)
+        self.output_cola.place(x = 208, y = 440)
         
         self.previous_button = Button(self.root, text = '<', command = self.showPage1)
         self.previous_button.configure(
@@ -242,6 +232,7 @@ class App():
         self.pricewidget3.place(x = 0, y = 102, width = 50, height = 25)
         self.showIncrease()
         self.showDecrease()
+        self.check_page()
     
     
     def showClose(self):
@@ -327,20 +318,20 @@ class App():
         if self.page == 1:
             for i in (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget):
                 if int(i['text']) > 0:
-                    self.basketButton = Button(self.root, text = '🛒', command = self.count)
+                    self.basketButton = Button(self.root, text = '🛒', command = self.get_order)
         else:
              for i in (self.output_applepie, self.output_browniecake, self.output_cola):
                 if int(i['text']) > 0:
-                    self.basketButton = Button(self.root, text = '🛒', command = self.count)
+                    self.basketButton = Button(self.root, text = '🛒', command = self.get_order)
         self.basketButton.configure(
-                        background = self.bgcolor,
-                        foreground = self.fgcolor,
-                        font = self.font,
-                        relief = 'flat',
-                        cursor = 'hand2',
-                        activebackground = self.bgcolor,
-                        activeforeground = self.menu_fgcolor
-                        )
+            background = self.bgcolor,
+            foreground = self.fgcolor,
+            font = self.font,
+            relief = 'flat',
+            cursor = 'hand2',
+            activebackground = self.bgcolor,
+            activeforeground = self.menu_fgcolor
+            )
         self.hover(self.basketButton, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.basketButton.place(x = 45, y = 20, width = 25, height = 25)
         
@@ -361,8 +352,8 @@ class App():
             )
             self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.increaseButton1.place(x = 197, y = 149, width = 25, height = 25)
-        self.increaseButton2.place(x = 173, y = 344, width = 25, height = 25)
-        self.increaseButton3.place(x = 231, y = 469, width = 25, height = 25)
+        self.increaseButton2.place(x = 173, y = 320, width = 25, height = 25)
+        self.increaseButton3.place(x = 231, y = 440, width = 25, height = 25)
     
     
     def showDecrease(self):
@@ -381,8 +372,8 @@ class App():
             )
             self.hover(i, self.button_hovercolor, self.bgcolor, self.menu_fgcolor, self.fgcolor)
         self.decreaseButton1.place(x = 146, y = 149, width = 25, height = 25)
-        self.decreaseButton2.place(x = 122, y = 344, width = 25, height = 25)
-        self.decreaseButton3.place(x = 180, y = 469, width = 25, height = 25)
+        self.decreaseButton2.place(x = 122, y = 320, width = 25, height = 25)
+        self.decreaseButton3.place(x = 180, y = 440, width = 25, height = 25)
 
             
     def increase(self, i, y):
@@ -515,33 +506,97 @@ class App():
         self.text_widget.place(x = 45, y = 50, width = 260)
         
     
-    def count(self):
+    def get_order(self):
         if self.page == 1:
-            self.values1 = (self.output_burgerwidget, self.output_pancakewidget, self.output_cupcakewidget)
-            self.names_page1 = ('Burger','Pancake','Cupcake')
-            for i in range(0, len(self.values1)):
-                self.order_dict[self.names_page1[i]] = self.values1[i]['text']
+            self.prod_dict1 = {'Burger': f'{self.output_burgerwidget["text"]}', 'Pancake': f'{self.output_pancakewidget["text"]}', 'Cupcake': f'{self.output_cupcakewidget["text"]}'}
+            for key in self.prod_dict1:
+                self.tmp_dict[key] = self.prod_dict1[key]
+            self.order_dict.update(self.tmp_dict)
         else:
-            self.values2 = (self.output_applepie, self.output_browniecake, self.output_cola)
-            self.names_page2 = ('Apple Pie','Brownie','Cola')
-            for i in range(0, len(self.values2)):
-                self.order_dict[self.names_page2[i]] = self.values2[i]['text']
+            self.prod_dict2 = {'Apple Pie': f'{self.output_applepie["text"]}', 'Brownie': f'{self.output_browniecake["text"]}', 'Cola': f'{self.output_cola["text"]}'}
+            for key in self.prod_dict2:
+                self.tmp_dict[key] = self.prod_dict2[key]
+            self.order_dict.update(self.tmp_dict)
         self.bill()
+    
+    
+    def check_page(self):
+        if self.page == 1:
+            try:
+                self.prod_dict2 = {'Apple Pie': f'{self.output_applepie["text"]}', 'Brownie': f'{self.output_browniecake["text"]}', 'Cola': f'{self.output_cola["text"]}'}
+                for key in self.prod_dict2:
+                    self.tmp_dict[key] = self.prod_dict2[key]
+                self.order_dict.update(self.tmp_dict)
+            except AttributeError:
+                pass
+            
+            try:
+                self.output_burgerwidget["text"] = self.order_dict['Burger']
+                self.output_pancakewidget["text"] = self.order_dict['Pancake']
+                self.output_cupcakewidget["text"] = self.order_dict['Cupcake']
+            except KeyError:
+                pass
+            
+        else:
+            self.prod_dict1 = {'Burger': f'{self.output_burgerwidget["text"]}', 'Pancake': f'{self.output_pancakewidget["text"]}', 'Cupcake': f'{self.output_cupcakewidget["text"]}'}
+            for key in self.prod_dict1:
+                self.tmp_dict[key] = self.prod_dict1[key]
+                self.order_dict.update(self.tmp_dict)
+            
+            try:
+                self.output_applepie['text'] = self.order_dict['Apple Pie']
+                self.output_browniecake['text'] = self.order_dict['Brownie']
+                self.output_cola['text'] = self.order_dict['Cola']
+            except KeyError:
+                pass
+        self.showBasket()
         
         
     def bill(self):
         self.showBackground()
         self.showClose()
-        print(self.order_dict)
+        self.decor = PhotoImage(file = 'assets\\decor_about_us.png')
+        self.decorwidget = Label(self.root, image = self.decor, background = self.bgcolor)
+        self.decorwidget.place(x = 60, y = 250)
+        self.bill_label_name = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = LEFT, wraplength = 100)
+        self.bill_label_order = Label(self.root, text = '', background = self.bgcolor, font = self.font, justify = RIGHT, wraplength = 200)
+        
+        self.dots, self.active_list, self.tmp_list, self.names, self.orders = [], [], [], [], []
+        for i in self.order_dict:
+            self.tmp_list.append(str(f'{i}: {self.order_dict[i]}'))
+            
+        for i in self.tmp_list:
+            if i.split(': ')[-1] != "0":
+                self.active_list.append(i)
+                
+        self.dots_length = 30
+        for i in self.active_list:
+            for y in range(0, self.dots_length):
+                self.dots.append('.')
+            self.names.append(f"{i.split(': ')[0]}")
+            self.orders.append(f"{''.join(i for i in self.dots)} {i.split(': ')[-1]} x $1.25")
+            self.dots = []
+            
+        self.bill_label_name['text'] = '\n'.join(i for i in self.names)
+        self.bill_label_name.place(x = 45, y = 50)
+        
+        self.bill_label_order['text'] = '\n'.join(i for i in self.orders)
+        self.bill_label_order.place(x = 105, y = 50, width = 200)
         
         
     def close(self):
         try:
-            for i in (self.decorwidget,self.text_widget,self.burgerwidget,self.pancakewidget,self.recipe1,self.recipe2,self.recipe3,self.button):
+            for i in (self.decorwidget,self.text_widget,self.recipe1,self.recipe2,self.recipe3,self.button):
                 i.destroy()
         except AttributeError:
             pass
-        self.order_dict = {}
+        
+        self.order_dict, self.tmp_dict = {}, {}
+        try:
+            for i in (self.output_burgerwidget,self.output_pancakewidget,self.output_cupcakewidget,self.output_applepie,self.output_browniecake,self.output_cola):
+                i['text'] = "0"
+        except AttributeError:
+            pass
         self.showHome()
 
 if __name__ == '__main__':

@@ -60,8 +60,6 @@ class App():
         self.decor_widget = Label(self.root, image = self.decor, background = self.accent_color_1)
         self.decor_widget.place(x = 60, y = 250)
         self.show_menu()
-        self.show_user()
-        self.show_web()
     
     
     def show_menu(self):
@@ -73,10 +71,8 @@ class App():
         self.button_recipes.place(x = 20, y = 250, width = 80, height = 25)
         self.button_contacts = Button(self.root, text = 'CONTACTS', command = self.show_contacts)
         self.button_contacts.place(x = 20, y = 275, width = 80, height = 25)
-        self.basket_button = Button(self.root, text = '🛒', command = self.bill)
-        self.basket_button.place(x = 45, y = 20, width = 25, height = 25)
         
-        for i in (self.button_aboutus, self.button_menu, self.button_recipes, self.button_contacts, self.basket_button):
+        for i in (self.button_aboutus, self.button_menu, self.button_recipes, self.button_contacts):
             i.configure(
             background = self.accent_color_1,
             foreground = self.accent_color_2,
@@ -88,36 +84,6 @@ class App():
             activeforeground = self.accent_color_3
             )
             self.hover(i, self.accent_color_4, self.accent_color_1, self.accent_color_3, self.accent_color_2)
-    
-    
-    def show_user(self):
-        self.button = Button(self.root, text = '👤', command = self.close)
-        self.button.configure(
-            background = self.accent_color_1,
-            foreground = self.accent_color_2,
-            font = self.accent_font_1,
-            relief = self.relief,
-            cursor = self.cursor,
-            activebackground = self.accent_color_1,
-            activeforeground = self.accent_color_3
-            )
-        self.hover(self.button, self.accent_color_4, self.accent_color_1, self.accent_color_3, self.accent_color_2)
-        self.button.place(x = 305, y = 20, width = 25, height = 25)
-    
-    
-    def show_web(self):
-        self.button = Button(self.root, text = '🌐', command = self.close)
-        self.button.configure(
-            background = self.accent_color_1,
-            foreground = self.accent_color_2,
-            font = self.accent_font_1,
-            relief = self.relief,
-            cursor = self.cursor,
-            activebackground = self.accent_color_1,
-            activeforeground = self.accent_color_3
-            )
-        self.hover(self.button, self.accent_color_4, self.accent_color_1, self.accent_color_3, self.accent_color_2)
-        self.button.place(x = 20, y = 20, width = 25, height = 25)
     
     
     def show_page_1(self):
@@ -177,7 +143,7 @@ class App():
         self.show_price()
         self.show_increase()
         self.show_decrease()
-        self.check_page()
+        self.check_selected_products()
     
     
     def show_page_2(self):
@@ -243,7 +209,7 @@ class App():
         self.price_widget_6.place(x = 24, y = 110, width = 50, height = 25)
         self.show_increase()
         self.show_decrease()
-        self.check_page()
+        self.check_selected_products()
     
     
     def show_close(self):
@@ -334,14 +300,9 @@ class App():
     
     
     def show_basket(self):
-        if self.page == 1:
-            for i in (self.burgerwidget_output, self.pancakewidget_output, self.cupcakewidget_output):
-                if int(i['text']) > 0:
-                    self.basket_button = Button(self.root, text = '🛒', command = self.get_order)
-        else:
-             for i in (self.applepie_output, self.brownie_output, self.cola_output):
-                if int(i['text']) > 0:
-                    self.basket_button = Button(self.root, text = '🛒', command = self.get_order)
+        self.basket_button = Button(self.root, text = '🛒', command = self.get_order)
+        self.basket_button.place(x = 45, y = 20, width = 25, height = 25)
+                    
         self.basket_button.configure(
             background = self.accent_color_1,
             foreground = self.accent_color_2,
@@ -352,7 +313,6 @@ class App():
             activeforeground = self.accent_color_3
             )
         self.hover(self.basket_button, self.accent_color_4, self.accent_color_1, self.accent_color_3, self.accent_color_2)
-        self.basket_button.place(x = 45, y = 20, width = 25, height = 25)
         
         
     def show_increase(self):
@@ -401,28 +361,24 @@ class App():
             if y == 'increase_button_1' and int(self.burgerwidget_output['text']) < 9:
                 self.val += int(self.burgerwidget_output['text'])
                 self.burgerwidget_output['text'] = str(self.val)
-                self.show_basket()
             elif y == 'increase_button_2' and int(self.pancakewidget_output['text']) < 9:
                 self.val += int(self.pancakewidget_output['text'])
                 self.pancakewidget_output['text'] = str(self.val)
-                self.show_basket()
             elif y == 'increase_button_3' and int(self.cupcakewidget_output['text']) < 9:
                 self.val += int(self.cupcakewidget_output['text'])
                 self.cupcakewidget_output['text'] = str(self.val)
-                self.show_basket()
+            self.show_basket()
         else:
             if y == 'increase_button_1' and int(self.applepie_output['text']) < 9:
                 self.val += int(self.applepie_output['text'])
                 self.applepie_output['text'] = str(self.val)
-                self.show_basket()
             elif y == 'increase_button_2' and int(self.brownie_output['text']) < 9:
                 self.val += int(self.brownie_output['text'])
                 self.brownie_output['text'] = str(self.val)
-                self.show_basket()
             elif y == 'increase_button_3' and int(self.cola_output['text']) < 9:
                 self.val += int(self.cola_output['text'])
                 self.cola_output['text'] = str(self.val)
-                self.show_basket()
+            self.show_basket()
     
             
     def decrease(self, i, y):
@@ -499,7 +455,7 @@ class App():
         self.recipe_3.place(x = 70, y = 150, width = 205, height = 25)
         self.recipe_4.place(x = 70, y = 175, width = 205, height = 25)
         self.recipe_5.place(x = 70, y = 200, width = 205, height = 25)
-        
+
     
     def show_recipe(self, i):
         self.show_background()  
@@ -555,7 +511,7 @@ class App():
         self.bill()
     
     
-    def check_page(self):
+    def check_selected_products(self):
         if self.page == 1:
             try:
                 self.prods_dict_page_2 = {f'{self.prod_name_4}': f'{self.applepie_output["text"]}', f'{self.prod_name_5}': f'{self.brownie_output["text"]}', f'{self.prod_name_6}': f'{self.cola_output["text"]}'}

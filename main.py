@@ -30,12 +30,12 @@ class App():
         
         self.order_dict = {}
         self.tmp_dict = {}
-        self.prod_name_1 = 'Burger\nwith vegetables'
-        self.prod_name_2 = 'Pancake\nwith blueberries'
-        self.prod_name_3 = 'Cupcake\nchocolate'
-        self.prod_name_4 = 'Apple Pie\nwith cinnamon'
-        self.prod_name_5 = 'Brownie\nchoclolate'
-        self.prod_name_6 = 'Cola\nsugar-free'
+        self.prod_name_1 = '🛒 Burger\n• with vegetables •'
+        self.prod_name_2 = '🛒 Pancake\n• with blueberries •'
+        self.prod_name_3 = '🛒 Cupcake\n• chocolate •'
+        self.prod_name_4 = '🛒 Apple Pie\n• with cinnamon •'
+        self.prod_name_5 = '🛒 Brownie\n• chocolate •'
+        self.prod_name_6 = '🛒 Cola\n• sugar-free •'
         
         self.show_home()
         self.root.mainloop()
@@ -594,36 +594,34 @@ class App():
         self.decor = PhotoImage(file = 'assets\\decor_about_us.png')
         self.decor_widget = Label(self.root, image = self.decor, background = self.accent_color_1)
         self.decor_widget.place(x = 60, y = 250)
-        self.bill_prods_widet = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 100)
+        self.bill_prods_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 110)
         self.bill_cost_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = RIGHT, wraplength = 200)
-        self.bill_total_cost_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 90)
+        self.bill_total_name_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 90)
+        self.bill_total_cost_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, wraplength = 90)
         
-        try:
-            self.prices_dict = {f'{self.prod_name_1}': f'{self.price_widget_1["text"]}', f'{self.prod_name_2}': f'{self.price_widget_2["text"]}', f'{self.prod_name_3}': f'{self.price_widget_3["text"]}', f'{self.prod_name_4}': f'{self.price_widget_4["text"]}', f'{self.prod_name_5}': f'{self.price_widget_5["text"]}', f'{self.prod_name_6}': f'{self.price_widget_6["text"]}'}
-            self.dots, self.tmp_list, self.prods_list, self.cost_list = [], [], [], []
-            self.dots_length = 20
-            self.to_pay_per_position_list = []
-            
-            for i in self.order_dict:
-                if self.order_dict[i] != "0":
-                    self.tmp_list.append(str(f'{i}: {self.order_dict[i]}'))
+        self.prices_dict = {f'{self.prod_name_1}': f'{self.price_widget_1["text"]}', f'{self.prod_name_2}': f'{self.price_widget_2["text"]}', f'{self.prod_name_3}': f'{self.price_widget_3["text"]}', f'{self.prod_name_4}': f'{self.price_widget_4["text"]}', f'{self.prod_name_5}': f'{self.price_widget_5["text"]}', f'{self.prod_name_6}': f'{self.price_widget_6["text"]}'}
+        self.dots, self.tmp_list, self.prods_list, self.cost_list = [], [], [], []
+        self.dots_length = 23
+        self.to_pay_per_position_list = []
+        
+        for i in self.order_dict:
+            if self.order_dict[i] != "0":
+                self.tmp_list.append(str(f'{i}: {self.order_dict[i]}'))
 
-            for i in range(0, len(self.tmp_list)):
-                for y in range(0, self.dots_length):
-                    self.dots.append('.')
-                    name = self.tmp_list[i].split(': ')[0]
-                    quantity = self.tmp_list[i].split(': ')[-1]
-                    price = self.prices_dict[name]
-                    to_pay_per_position = (int(quantity) * float(price.split('$')[-1]))
-                    to_pay_per_position_formated = "{:.2f}".format(to_pay_per_position)
-                self.prods_list.append(name)
-                self.to_pay_per_position_list.append(to_pay_per_position)
-                
-                if name in self.prices_dict:
-                    self.cost_list.append(f"{''.join(i for i in self.dots)} {quantity}x {price}\n${to_pay_per_position_formated}")
-                    self.dots = []
-        except AttributeError:
-            pass
+        for i in range(0, len(self.tmp_list)):
+            for y in range(0, self.dots_length):
+                self.dots.append('.')
+                name = self.tmp_list[i].split(': ')[0]
+                quantity = self.tmp_list[i].split(': ')[-1]
+                price = self.prices_dict[name]
+                to_pay_per_position = (int(quantity) * float(price.split('$')[-1]))
+                to_pay_per_position_formated = "{:.2f}".format(to_pay_per_position)
+            self.prods_list.append(name)
+            self.to_pay_per_position_list.append(to_pay_per_position)
+            
+            if name in self.prices_dict:
+                self.cost_list.append(f"{''.join(i for i in self.dots)} {quantity}x {price}\nTotal: ${to_pay_per_position_formated}")
+                self.dots = []
         
         self.total_cost = 0
         for i in self.to_pay_per_position_list:
@@ -631,14 +629,17 @@ class App():
             self.total_cost = i
         self.total_cost_formated = "{:.2f}".format(self.total_cost)
           
-        self.bill_prods_widet['text'] = '\n'.join(i for i in self.prods_list)
-        self.bill_prods_widet.place(x = 45, y = 50, width = 100)
+        self.bill_prods_widget['text'] = '\n'.join(i for i in self.prods_list)
+        self.bill_prods_widget.place(x = 30, y = 50, width = 130)
         
         self.bill_cost_widget['text'] = '\n'.join(i for i in self.cost_list)
-        self.bill_cost_widget.place(x = 150, y = 50, width = 160)
+        self.bill_cost_widget.place(x = 155, y = 50, width = 160)
         
-        self.bill_total_cost_widget['text'] = 'Total:\n$'f'{self.total_cost_formated}'
-        self.bill_total_cost_widget.place(x = 25, y = 320, width = 90)
+        self.bill_total_name_widget['text'] = 'Total:\n'
+        self.bill_total_name_widget.place(x = 25, y = 320, width = 90)
+        
+        self.bill_total_cost_widget['text'] = f'${self.total_cost_formated}'
+        self.bill_total_cost_widget.place(x = 45, y = 340, width = 50)
         
         
     def close(self):

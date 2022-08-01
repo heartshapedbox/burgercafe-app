@@ -17,9 +17,8 @@ class App():
         self.root.iconbitmap('assets\\logo.ico')
         
         self.accent_font_1 = ('TkMenuFont',10)
-        self.accent_font_2 = ('TkMenuFont',10, 'bold')
-        self.accent_font_3 = ('TkMenuFont',12, 'bold')
-        self.accent_font_4 = ('Pacifico', 14)
+        self.accent_font_2 = ('TkMenuFont',12, 'bold')
+        self.accent_font_3 = ('Pacifico', 14)
         self.accent_color_1 = '#fede00'
         self.accent_color_2 = '#000000'
         self.accent_color_3 = '#b29b00'
@@ -99,21 +98,21 @@ class App():
         self.pancakewidget.place(x = -130, y = 160)
         self.cupcakewidget = Label(self.root, image = self.cupcake, background = self.accent_color_1)
         self.cupcakewidget.place(x = 200, y = 330)
-        self.header_burgerwidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 200)
+        self.header_burgerwidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 200)
         self.header_burgerwidget['text'] = 'Burger with Vegetables'
         self.text_burgerwidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 140)
         self.text_burgerwidget['text'] = 'Enjoy deliciously simple craft Classic Burger with a juicy beef patty, lettuce, tomato, onions and pickles on a bun.'
         self.header_burgerwidget.place(x = 130, y = 5, width = 200)
         self.text_burgerwidget.place(x = 25, y = 50, width = 140)
         
-        self.header_pancakewidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 220)
+        self.header_pancakewidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 220)
         self.header_pancakewidget['text'] = 'Pancakes with Blueberries'
         self.text_pancakewidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 100)
         self.text_pancakewidget['text'] = 'Thick and fluffy pancakes! Melt in your mouth, golden brown, and bursting with blueberries.'
         self.header_pancakewidget.place(x = 20, y = 173, width = 220)
         self.text_pancakewidget.place(x = 205, y = 215, width = 100)
         
-        self.header_cupcakewidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 165)
+        self.header_cupcakewidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 165)
         self.header_cupcakewidget['text'] = 'Chocolate Cupcake'
         self.text_cupcakewidget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 160)
         self.text_cupcakewidget['text'] = 'These delicious cupcake has a chocolate centre once you get past the cream topping.'
@@ -160,21 +159,21 @@ class App():
         self.cola_widget = Label(self.root, image = self.cola, background = self.accent_color_1)
         self.cola_widget.place(x = 180, y = 300)
         
-        self.applepie_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 200)
+        self.applepie_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 200)
         self.applepie_header['text'] = 'Apple Pie with Cinnamon'
         self.applepie_text = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 100)
         self.applepie_text['text'] = "This is absolutely the best homemade apple pie you'll ever taste!"
         self.applepie_header.place(x = 115, y = 5, width = 215)
         self.applepie_text.place(x = 20, y = 50, width = 100)
         
-        self.browniecake_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 200)
+        self.browniecake_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 200)
         self.browniecake_header['text'] = 'Chocolate Brownie Cake'
         self.browniecake_text = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 95)
         self.browniecake_text['text'] = 'These delightful individual Chocolate Brownie cakes are the perfect mini treat.'
         self.browniecake_header.place(x = 20, y = 173, width = 200)
         self.browniecake_text.place(x = 205, y = 215, width = 95)
         
-        self.cola_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 150)
+        self.cola_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 150)
         self.cola_header['text'] = 'Refreshing Cola'
         self.cola_text = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 160)
         self.cola_text['text'] = 'Refreshing a sugar-free drink that looks and tastes like the classic Cola.'
@@ -201,9 +200,9 @@ class App():
         self.hover(self.previous_button, self.accent_color_4, self.accent_color_1, self.accent_color_3, self.accent_color_2)
         self.previous_button.place(x = 20, y = 225, width = 25, height = 25)
         
-        self.price_widget_4 = Label(self.applepie_widget, text = '$1.65', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 45)
-        self.price_widget_5 = Label(self.browniecake_widget, text = '$1.99', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 45)
-        self.price_widget_6 = Label(self.cola_widget, text = '$0.99', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 45)
+        self.price_widget_4 = Label(self.applepie_widget, text = '$1.65', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, wraplength = 45)
+        self.price_widget_5 = Label(self.browniecake_widget, text = '$1.99', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, wraplength = 45)
+        self.price_widget_6 = Label(self.cola_widget, text = '$0.99', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, wraplength = 45)
         self.price_widget_4.place(x = 58, y = 100, width = 50, height = 25)
         self.price_widget_5.place(x = 180, y = 50, width = 50, height = 25)
         self.price_widget_6.place(x = 24, y = 110, width = 50, height = 25)
@@ -291,9 +290,9 @@ class App():
     
     
     def show_price(self):
-        self.price_widget_1 = Label(self.burgerwidget, text = '$2.50', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, anchor = 'e', wraplength = 45)
-        self.price_widget_2 = Label(self.pancakewidget, text = '$6.75', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 45)
-        self.price_widget_3 = Label(self.cupcakewidget, text = '$2.15', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 45)
+        self.price_widget_1 = Label(self.burgerwidget, text = '$2.50', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, anchor = 'e', wraplength = 45)
+        self.price_widget_2 = Label(self.pancakewidget, text = '$6.75', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, wraplength = 45)
+        self.price_widget_3 = Label(self.cupcakewidget, text = '$2.15', background = self.accent_color_1, font = self.accent_font_2, justify = LEFT, wraplength = 45)
         self.price_widget_1.place(x = 5, y = 70, width = 83, height = 25)
         self.price_widget_2.place(x = 250, y = 50, width = 50, height = 25)
         self.price_widget_3.place(x = 4, y = 80, width = 50, height = 25)
@@ -417,7 +416,7 @@ class App():
         self.decor = PhotoImage(file = 'assets\\decor_about_us.png')
         self.decor_widget = Label(self.root, image = self.decor, background = self.accent_color_1)
         self.decor_widget.place(x = 60, y = 250)
-        self.text_header = Label(self.root, text = 'Welcome to Burger Cafe!\n\n', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 260)
+        self.text_header = Label(self.root, text = 'Welcome to Burger Cafe!\n\n', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 260)
         self.text_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 260)
         self.text_widget['text'] = 'Burger Cafe is a family-friendly cafe that serves the best burgers with refreshing Cola. In addition you will find here a lot of delighting goodies: Apple Pie, Pancakes, Chocolate Brownie and Chocolate Cupcakes.\n\nAll of our products are prepared with the finest and freshest ingredients!'
         self.text_header.place(x = 45, y = 50, width = 260)
@@ -430,7 +429,7 @@ class App():
         self.decor = PhotoImage(file = 'assets\\decor_recipes.png')
         self.decor_widget = Label(self.root, image = self.decor, background = self.accent_color_1)
         self.decor_widget.place(x = 60, y = 250)
-        self.text_header = Label(self.root, text = 'Recipes.\n\n', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 260)
+        self.text_header = Label(self.root, text = 'Recipes.\n\n', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 260)
         self.recipe_1 = Button(self.root, text = 'BURGERS WITH VEGETABLES', command = lambda:self.show_recipe('burger'))
         self.recipe_2 = Button(self.root, text = 'PANCAKE WITH BLUEBERRIES', command = lambda:self.show_recipe('pancake'))
         self.recipe_3 = Button(self.root, text = 'CHOCOLATE CUPCAKES', command = lambda:self.show_recipe('cupcake'))
@@ -463,7 +462,7 @@ class App():
         self.show_next(i)
         self.show_previous(i)
         self.text_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 260)
-        self.header_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 260)
+        self.header_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 260)
         if i == 'burger':
             self.header_widget['text'] = 'Burger with Vegetables'
             self.text_widget['text'] = 'Ingredients:\n* 1 small onion, diced,* 500g good-quality beef mince,* 1 egg,* 1 tbsp vegetable oil,* 4 burger buns,* all or any of the following to serve: sliced tomato, beetroot, horseradish sauce, mayonnaise, ketchup, handful iceberg lettuce, rocket, watercress\n\nMethod:\nTip 500g beef mince into a bowl with 1 small diced onion and 1 egg, then mix. Divide the mixture into four. Roll the mixture into balls and squeeze down to flatten into patties. Put on a plate, cover with cling film and leave in the fridge to firm up for at least 30 mins. Heat the barbecue to medium hot. Lightly brush one side of each burger with vegetable oil. Place the burgers, oil-side down, on the barbecue. Cook for 5 mins until the meat is lightly charred. Oil the other side, then turn over using tongs. Slice four burger buns in half. Place, cut-side down, on the barbecue rack and toast for 1 min until they are lightly charred. Place a burger inside each bun.'
@@ -490,7 +489,7 @@ class App():
         self.decor = PhotoImage(file = 'assets\\decor_contacts.png')
         self.decor_widget = Label(self.root, image = self.decor, background = self.accent_color_1)
         self.decor_widget.place(x = 60, y = 250)
-        self.text_header = Label(self.root, text = 'Schedule & Contacts.\n\n', background = self.accent_color_1, font = self.accent_font_4, justify = LEFT, wraplength = 260)
+        self.text_header = Label(self.root, text = 'Schedule & Contacts.\n\n', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 260)
         self.text_widget = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 260)
         self.text_widget['text'] = 'Burger Cafe is open 7 days a week & offers delivery.'
         self.text_header.place(x = 45, y = 50, width = 260)
@@ -592,7 +591,7 @@ class App():
         self.bill_cost_widget.place(x = 155, y = 50, width = 160)
         
         self.bill_total_name_widget['text'] = 'Total:\n'
-        self.bill_total_name_widget.place(x = 25, y = 320, width = 90)
+        self.bill_total_name_widget.place(x = 22, y = 320, width = 90)
         
         self.bill_total_cost_widget['text'] = f'${self.total_cost_formated}'
         self.bill_total_cost_widget.place(x = 45, y = 340, width = 50)

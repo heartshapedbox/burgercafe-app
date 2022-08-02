@@ -176,7 +176,7 @@ class App():
         self.cola_header = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_3, justify = LEFT, wraplength = 150)
         self.cola_header['text'] = 'Refreshing Cola'
         self.cola_text = Label(self.root, text = '', background = self.accent_color_1, font = self.accent_font_1, justify = LEFT, wraplength = 160)
-        self.cola_text['text'] = 'Refreshing a sugar-free drink that looks and tastes like the classic Cola.'
+        self.cola_text['text'] = 'A sugar-free refreshing drink that looks and tastes like the classic Cola.'
         self.cola_header.place(x = 175, y = 370, width = 150)
         self.cola_text.place(x = 30, y = 405, width = 160)
         

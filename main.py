@@ -1,8 +1,8 @@
 from tkinter import *
 import pyglet
 import os
-os.chdir('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-app\\')
-pyglet.font.add_file('C:\\Users\\baben\\Documents\\GitHub\\burgercafe-app\\fonts\\Pacifico.ttf')
+os.chdir('C:\\Users\\Dima\\Documents\\GitHub\\burgercafe-app\\')
+pyglet.font.add_file('C:\\Users\\Dima\\Documents\\GitHub\\burgercafe-app\\fonts\\Pacifico.ttf')
 
 class App():
     def __init__(self): 
